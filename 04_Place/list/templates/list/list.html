@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+맛Zip
+{% endblock %}
+
+{% block content %}
+    <div class="btn-group">
+        <a href="{% url 'f_post' %}" class="btnbtn-info">Add 리스트 이름</a>
+    </div>
+    <p></p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">URL</th>
+                <th scope="col">Modify</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for list in lists %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{% url 'f_detail' pk=list.pk %}">{{list.name}}</a></td>
+                <td><a href="{{list.url}}" target="_blank">{{list.url}}</a></td>
+                <td><a href="{% url 'f_edit' pk=list.pk %}" class="btn btn-success btn-sm">Modify</a></td>
+                <td><a href="{% url 'f_delete' pk=list.pk %}" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
